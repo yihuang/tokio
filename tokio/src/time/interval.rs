@@ -65,8 +65,6 @@ use std::task::{Context, Poll};
 ///
 /// [`sleep`]: crate::time::sleep()
 pub fn interval(period: Duration) -> Interval {
-    assert!(period > Duration::new(0, 0), "`period` must be non-zero.");
-
     interval_at(Instant::now(), period)
 }
 
@@ -98,8 +96,6 @@ pub fn interval(period: Duration) -> Interval {
 /// }
 /// ```
 pub fn interval_at(start: Instant, period: Duration) -> Interval {
-    assert!(period > Duration::new(0, 0), "`period` must be non-zero.");
-
     Interval {
         delay: Box::pin(sleep_until(start)),
         period,
